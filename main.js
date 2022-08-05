@@ -2,8 +2,8 @@ const $ = document;
 let textInput = $.querySelector(".input");
 const checkBtn = $.querySelector(".pal-btn");
 let massage = $.querySelector(".pal-massage");
+let filterInput;
 
- let filterInput;
 checkBtn.addEventListener("click", () => {
     textInput.value = "";
     checkBtn.classList.remove("active");
@@ -27,7 +27,9 @@ textInput.addEventListener("keyup", () =>{
     // Regex for removing spaces & some characters
 
     filterInput = textInput.value.toLowerCase().replace(/[^A-Z0-9]/ig, "");
-   if(filterInput){
+    if(filterInput.length <= 2){
+        checkBtn.classList.remove("active");
+    }else if(filterInput){
     return checkBtn.classList.add("active");
    }
    checkBtn.classList.remove("active");
